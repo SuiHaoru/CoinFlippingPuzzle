@@ -8,7 +8,6 @@ import javafx.stage.Stage;
 
 public class GameApplication extends Application {
     public void start(Stage stage) throws Exception {
-        //Logger.info("Starting application");
 
         stage.setTitle("Coin Flipping Game");
         stage.setResizable(false);
