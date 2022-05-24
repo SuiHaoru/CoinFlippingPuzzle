@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CoinFlippingGame.javafx.controller.LaunchController">
+   <children>
+      <Label alignment="TOP_CENTER" layoutX="40.0" layoutY="56.0" text="Coin filpping game" textAlignment="CENTER" textFill="#5f4ad9">
+         <font>
+            <Font name="Castellar" size="44.0" />
+         </font>
+      </Label>
+      <Label layoutX="89.0" layoutY="159.0" text="Player One:" textFill="#3900ff">
+         <font>
+            <Font name="Castellar" size="20.0" />
+         </font></Label>
+      <TextField fx:id="player1" layoutX="276.0" layoutY="155.0" prefHeight="26.0" prefWidth="158.0">
+         <font>
+            <Font name="Castellar" size="18.0" />
+         </font></TextField>
+
+      <Label layoutX="89.0" layoutY="225.0" prefHeight="27.0" prefWidth="158.0" text="Player Two:" textFill="#2a23d9">
+         <font>
+            <Font name="Castellar" size="20.0" />
+         </font></Label>
+      <TextField fx:id="player2" layoutX="276.0" layoutY="221.0" prefHeight="26.0" prefWidth="158.0">
+         <font>
+            <Font name="Castellar" size="18.0" />
+         </font></TextField>
+
+      <Button fx:id="startButton" layoutX="221.0" layoutY="292.0" mnemonicParsing="false" onAction="#startAction" prefHeight="51.0" prefWidth="151.0" text="Start game" textAlignment="CENTER" textFill="#6b2deb" wrapText="true">
+         <font>
+            <Font name="Comic Sans MS Bold" size="20.0" />
+         </font></Button>
+      <Label fx:id="errorLabel1" layoutX="277.0" layoutY="194.0" prefHeight="22.0" prefWidth="224.0" textFill="#e30e0e">
+         <font>
+            <Font name="Jokerman" size="14.0" />
+         </font></Label>
+      <Label fx:id="errorLabel2" layoutX="276.0" layoutY="261.0" prefHeight="22.0" prefWidth="224.0" textFill="#e30e0e">
+         <font>
+            <Font name="Jokerman" size="14.0" />
+         </font></Label>
+
+   </children>
+</Pane>
