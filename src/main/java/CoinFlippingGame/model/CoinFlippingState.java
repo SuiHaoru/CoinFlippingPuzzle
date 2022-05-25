@@ -10,23 +10,41 @@ import java.time.LocalDateTime;
  */
 
 public class CoinFlippingState {
-    /**
-     * Creates the board of 1x10 cells, initialize all of them to heads up at the beginning
-     */
+
     Stack editedCoins = new Stack();
+    /**
+     * Creates the board of 1x10 cells, initialize all of them to heads up at the beginning.
+     */
     public char[] board = new char[10];
     LocalDateTime startOfGame;
-    public String currentPlayer;
-    public String player1;
-    public String player2;
+
+    /**
+     * Creates the players.
+     */
+    public String currentPlayer, player1,  player2;
+
+    /**
+     * provides the initial number of chosen coins.
+     */
     public int countChosenCoins = 0;
+
+    /**
+     * provides the initial number of player1 move steps.
+     */
     public int player1Moves = 0;
+
+    /**
+     * provides the initial number of player2 move steps.
+     */
     public int player2Moves = 0;
-    public String winner;
+
     int rightMostIndex = 0;
     GameResultToJSON resultWriter;
     GameResult gameInfo;
 
+    /**
+     * a constructor to initialize the first state.
+     */
     public CoinFlippingState() {
         for (int i = 0; i < board.length; i++) {
             board[i] = 'H';
@@ -56,8 +74,8 @@ public class CoinFlippingState {
     }
 
     /**
-     * checks if the all the requirements are met before changing the player
-     * @return
+     * checks if the all the requirements are met before changing the player.
+     * @return a boolean value
      */
     public boolean canCoinsFlipped() {
         if (countChosenCoins < 4 && board[rightMostIndex] == 'T') {
@@ -67,8 +85,23 @@ public class CoinFlippingState {
     }
 
     /**
-     * swaps the players after nect button is pressed
-     * @return
+     * checks if the game is complete.
+     * @return a boolean value
+     */
+    public boolean isGameComplete() {
+        int countTails = 0;
+        for (int i = 0; i < board.length; i++) {
+            if (board[i] == 'T')
+                countTails++;
+        }
+        if (countTails == 10)
+            return true;
+        return false;
+    }
+
+    /**
+     * swaps the players after next button is pressed.
+     * @return a boolean value
      */
     public boolean nextPlayer() {
         if (isGameComplete()) {
@@ -103,7 +136,9 @@ public class CoinFlippingState {
         }
     }
 
-
+    /**
+     * reset the current step.
+     */
     private void clearCurrentStep() {
         Stack temporaryCoins = (Stack) editedCoins.clone();
         Logger.debug("Clearing the incorrect state of the game");
@@ -113,7 +148,7 @@ public class CoinFlippingState {
     }
 
     /**
-     * used for drawing state of the game
+     * used for drawing state of the game.
      */
     public void draw() {
         for (int i = 0; i < board.length; i++) {
@@ -121,23 +156,10 @@ public class CoinFlippingState {
         }
     }
 
-    /**
-     * checks if the game is complete
-     * @return
-     */
-    public boolean isGameComplete() {
-        int countTails = 0;
-        for (int i = 0; i < board.length; i++) {
-            if (board[i] == 'T')
-                countTails++;
-        }
-        if (countTails == 10)
-            return true;
-        return false;
-    }
+
 
     /**
-     * restarts the game by resetting settings
+     * restarts the game by resetting settings.
      */
     public void restart(){
         for (int i = 0; i < board.length; i++) {

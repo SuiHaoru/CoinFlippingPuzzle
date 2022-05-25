@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.*;
 
 /**
- * contoller class for the HighestScores UI
+ * contoller class for the HighestScores UI.
  */
 public class HighestScoresController{
 
@@ -16,7 +16,7 @@ public class HighestScoresController{
     GridPane resultGrid;
 
     /**
-     * Initializes the highest score list with the top 5 players and their number of wins
+     * Initializes the highest score list with the top 5 players and their number of wins.
      */
     public void initialize(){
         GameResultToJSON reader = new GameResultToJSON();

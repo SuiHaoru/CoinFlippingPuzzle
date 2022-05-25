@@ -4,23 +4,26 @@ import java.io.*;
 import CoinFlippingGame.result.*;
 import java.util.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.tinylog.Logger;
 
 /**
- * class for storing game information in JSON file
+ * class for storing game information in JSON file.
  */
 public class GameResultToJSON {
     private File file = new File("GameResults.json");
     private ObjectMapper mapper = new ObjectMapper();
+
+    /**
+     * a constructor.
+     */
     public GameResultToJSON(){
         mapper.registerModule(new JavaTimeModule());
     }
 
     /**
-     * Adding game information to the list of game results
+     * Adding game information to the list of game results.
      * @param result GameResult object for storing information
      */
     public void addGameResult(GameResult result){
@@ -40,8 +43,8 @@ public class GameResultToJSON {
     }
 
     /**
-     * method for getting the top 5 winners of the game
-     * @return
+     * method for getting the top 5 winners of the game.
+     * @return the top 5 winners
      */
     public List<Map.Entry<String,Integer>> getTopScoreList(){
         Map<String,Integer> winners = new HashMap<>();

@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- * Controller class for the start page
+ * Controller class for the start page.
  */
 public class LaunchController {
 
@@ -34,7 +34,7 @@ public class LaunchController {
     Button startButton;
 
     /**
-     * checks for the user names and changes the scene to the game
+     * checks for the user names and changes the scene to the game.
      * @param actionEvent
      * @throws IOException
      */

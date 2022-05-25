@@ -2,7 +2,7 @@ package CoinFlippingGame.result;
 import java.time.LocalDateTime;
 
 /**
- * class for storing the game info
+ * class for storing the game info.
  */
 @lombok.Data
 public class GameResult {

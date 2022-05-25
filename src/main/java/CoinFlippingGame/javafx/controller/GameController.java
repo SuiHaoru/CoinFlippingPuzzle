@@ -18,7 +18,7 @@ import java.io.IOException;
 import org.tinylog.Logger;
 
 /**
- * Controller class for the game fxml
+ * Controller class for the game fxml.
  */
 public class GameController {
     FXMLLoader fxmlLoader = new FXMLLoader();
@@ -38,7 +38,7 @@ public class GameController {
     CoinFlippingState model = new CoinFlippingState();
 
     /**
-     * sets the player name to the model
+     * sets the player name to the model.
      * @param player1 is a player name
      */
     public void setPlayer1(String player1) {
@@ -48,7 +48,7 @@ public class GameController {
     }
 
     /**
-     * sets the second players name to the model
+     * sets the second players name to the model.
      * @param player2 is the second palyers name
      */
     public void setPlayer2(String player2) {
@@ -57,7 +57,7 @@ public class GameController {
     }
 
     /**
-     * intializes the game board with heads up
+     * intializes the game board with heads up.
      */
     public void initialize() {
         for (int i = 0; i < model.board.length; i++) {
@@ -80,7 +80,7 @@ public class GameController {
     }
 
     /**
-     * handler for the change of the players
+     * handler for the change of the players.
      * @author Sui Haoru
      */
     public void handleNextClick() {
@@ -97,7 +97,7 @@ public class GameController {
     }
 
     /**
-     * Handles the exit from the game, changing the scene to the score board
+     * Handles the exit from the game, changing the scene to the score board.
      * @param actionEvent source for the event
      * @throws IOException
      */
@@ -110,7 +110,7 @@ public class GameController {
     }
 
     /**
-     * handler for the restart button
+     * handler for the restart button.
      */
     public void handleRestart(){
         model.restart();
