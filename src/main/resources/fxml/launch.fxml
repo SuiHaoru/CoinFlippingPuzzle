@@ -37,11 +37,11 @@
          </font></Button>
       <Label fx:id="errorLabel1" layoutX="277.0" layoutY="194.0" prefHeight="22.0" prefWidth="224.0" textFill="#e30e0e">
          <font>
-            <Font name="Jokerman" size="14.0" />
+            <Font name="Castellar" size="14.0" />
          </font></Label>
       <Label fx:id="errorLabel2" layoutX="276.0" layoutY="261.0" prefHeight="22.0" prefWidth="224.0" textFill="#e30e0e">
          <font>
-            <Font name="Jokerman" size="14.0" />
+            <Font name="Castellar" size="14.0" />
          </font></Label>
 
    </children>

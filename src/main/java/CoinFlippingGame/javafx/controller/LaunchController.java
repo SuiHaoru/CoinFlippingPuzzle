@@ -13,7 +13,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-
+/**
+ * Controller class for the start page
+ */
 public class LaunchController {
 
     FXMLLoader fxmlLoader = new FXMLLoader();
@@ -31,8 +33,13 @@ public class LaunchController {
     @FXML
     Button startButton;
 
+    /**
+     * checks for the user names and changes the scene to the game
+     * @param actionEvent
+     * @throws IOException
+     */
     public void startAction(ActionEvent actionEvent) throws IOException {
-        if (player1.getText().isEmpty() && player2.getText().isEmpty()){
+        if (player1.getText().isEmpty() && player2.getText().isEmpty()) {
             errorLabel1.setText("Enter Player One's name!");
             errorLabel2.setText("Enter Player Two's name!");
         }

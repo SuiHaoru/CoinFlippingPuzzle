@@ -44,12 +44,12 @@
                         <Font name="Castellar" size="14.0" />
                     </font>
                 </Button>
-                <Button fx:id="exitButton" mnemonicParsing="false" prefHeight="24.0" prefWidth="64.0" onAction="#handleExitClick" text="Exit" textFill="#893ef7">
+                <Button fx:id="exitButton" mnemonicParsing="false" onAction="#handleExitClick" prefHeight="24.0" prefWidth="64.0" text="Exit" textFill="#893ef7">
                     <font>
                         <Font name="Castellar" size="14.0" />
                     </font>
                 </Button>
-                <Button fx:id="resetButton" mnemonicParsing="false" text="Reset" textAlignment="CENTER" textFill="#893ef7">
+                <Button fx:id="resetButton" mnemonicParsing="false" onAction="#handleRestart" text="Reset" textAlignment="CENTER" textFill="#893ef7">
                     <font>
                         <Font name="Castellar" size="14.0" />
                     </font>
@@ -58,9 +58,9 @@
         </VBox>
     </right>
     <bottom>
-        <Label fx:id="errorLabel" prefHeight="35.0" prefWidth="366.0" textFill="RED" BorderPane.alignment="CENTER">
+        <Label fx:id="errorLabel" alignment="CENTER" prefHeight="35.0" prefWidth="437.0" textAlignment="CENTER" textFill="RED" BorderPane.alignment="CENTER">
             <font>
-                <Font size="18.0" />
+                <Font name="Castellar" size="18.0" />
             </font>
         </Label>
     </bottom>

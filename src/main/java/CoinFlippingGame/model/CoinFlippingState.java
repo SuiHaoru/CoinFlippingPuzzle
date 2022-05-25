@@ -1,6 +1,10 @@
 package CoinFlippingGame.model;
-import java.util.*;
 
+import java.util.*;
+import CoinFlippingGame.javafx.controller.*;
+import CoinFlippingGame.result.*;
+import org.tinylog.Logger;
+import java.time.LocalDateTime;
 /**
  * Class representing the state of the game.
  */
@@ -11,32 +15,50 @@ public class CoinFlippingState {
      */
     Stack editedCoins = new Stack();
     public char[] board = new char[10];
-    public String currentPlayer, player1, player2;
-    int countChosenCoins=0;
+    LocalDateTime startOfGame;
+    public String currentPlayer;
+    public String player1;
+    public String player2;
+    public int countChosenCoins = 0;
+    public int player1Moves = 0;
+    public int player2Moves = 0;
+    public String winner;
     int rightMostIndex = 0;
-    public CoinFlippingState(){
-        for(int i = 0;i<board.length;i++){
-            board[i]='H';
+    GameResultToJSON resultWriter;
+    GameResult gameInfo;
+
+    public CoinFlippingState() {
+        for (int i = 0; i < board.length; i++) {
+            board[i] = 'H';
         }
-        currentPlayer=player1;
-        System.out.println(currentPlayer);
+        resultWriter = new GameResultToJSON();
+        gameInfo = new GameResult();
+        Logger.info("Game started");
+        startOfGame = LocalDateTime.now();
     }
 
-
-
+    /**
+     * flips the coin at the given index.
+     * @param index
+     */
     public void flipCoin(int index) {
         if (board[index] == 'H') {
             board[index] = 'T';
-        }else {
+        } else {
             board[index] = 'H';
         }
         countChosenCoins++;
         editedCoins.push(index);
+        Logger.debug("Flipped the coin");
         if (index > rightMostIndex) {
             rightMostIndex = index;
         }
     }
 
+    /**
+     * checks if the all the requirements are met before changing the player
+     * @return
+     */
     public boolean canCoinsFlipped() {
         if (countChosenCoins < 4 && board[rightMostIndex] == 'T') {
             return true;
@@ -44,23 +66,36 @@ public class CoinFlippingState {
         return false;
     }
 
+    /**
+     * swaps the players after nect button is pressed
+     * @return
+     */
     public boolean nextPlayer() {
-        if(isGameComplete()){
-            System.out.println("WINNER IS" + currentPlayer);
+        if (isGameComplete()) {
+            Logger.info("WINNER IS {}",currentPlayer);
+            gameInfo.setWinner(currentPlayer);
+            gameInfo.setPlayer1(player1);
+            gameInfo.setPlayer2(player2);
+            gameInfo.setStartOfGame(startOfGame);
+            gameInfo.setPlayer1Count(player1Moves);
+            gameInfo.setPlayer2Count(player2Moves);
+            resultWriter.addGameResult(gameInfo);
             return true;
         }
         if (canCoinsFlipped()) {
             if (currentPlayer == player1) {
                 currentPlayer = player2;
-            }else{
+                player1Moves++;
+            } else {
                 currentPlayer = player1;
+                player2Moves++;
             }
+            Logger.info(currentPlayer);
             rightMostIndex = 0;
             countChosenCoins = 0;
             editedCoins = new Stack();
             return true;
-        }
-        else {
+        } else {
             clearCurrentStep();
             rightMostIndex = 0;
             countChosenCoins = 0;
@@ -69,18 +104,27 @@ public class CoinFlippingState {
     }
 
 
-    public void clearCurrentStep(){
-        Stack temporaryCoins = (Stack)editedCoins.clone();
-        temporaryCoins.stream().forEach(e -> flipCoin((int)e));
+    private void clearCurrentStep() {
+        Stack temporaryCoins = (Stack) editedCoins.clone();
+        Logger.debug("Clearing the incorrect state of the game");
+        temporaryCoins.stream().forEach(e -> flipCoin((int) e));
         draw();
         editedCoins = new Stack();
     }
 
-    public void draw(){
-        for(int i = 0;i<board.length;i++){
-            System.out.print(board[i]+" | ");
+    /**
+     * used for drawing state of the game
+     */
+    public void draw() {
+        for (int i = 0; i < board.length; i++) {
+            System.out.print(board[i] + " | ");
         }
     }
+
+    /**
+     * checks if the game is complete
+     * @return
+     */
     public boolean isGameComplete() {
         int countTails = 0;
         for (int i = 0; i < board.length; i++) {
@@ -92,5 +136,17 @@ public class CoinFlippingState {
         return false;
     }
 
+    /**
+     * restarts the game by resetting settings
+     */
+    public void restart(){
+        for (int i = 0; i < board.length; i++) {
+            board[i] = 'H';
+        }
+        countChosenCoins = 0;
+        rightMostIndex = 0;
+        editedCoins = new Stack();
+        Logger.info("Game restarted!");
+    }
 
 }
